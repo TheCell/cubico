@@ -59,66 +59,121 @@ public class Achievement_Manager : MonoBehaviour
 
     private static void Set_FIRST_MANIPULATION()
     {
+        if (!SteamManager.Initialized)
+        {
+            return;
+        }
+
         Steamworks.SteamUserStats.SetAchievement("FIRST_MANIPULATION");
         Steamworks.SteamUserStats.StoreStats();
     }
 
     public static void Set_RESPAWN()
     {
+        if (!SteamManager.Initialized)
+        {
+            return;
+        }
+
         Steamworks.SteamUserStats.SetAchievement("RESPAWN");
         Steamworks.SteamUserStats.StoreStats();
     }
 
     public static void Set_FIRST_PART()
     {
+        if (!SteamManager.Initialized)
+        {
+            return;
+        }
+
         Steamworks.SteamUserStats.SetAchievement("FIRST_PART");
         Steamworks.SteamUserStats.StoreStats();
     }
 
     public static void Set_SECOND_PART()
     {
+        if (!SteamManager.Initialized)
+        {
+            return;
+        }
+
         Steamworks.SteamUserStats.SetAchievement("SECOND_PART");
         Steamworks.SteamUserStats.StoreStats();
     }
 
     public static void Set_THIRD_PART()
     {
+        if (!SteamManager.Initialized)
+        {
+            return;
+        }
+
         Steamworks.SteamUserStats.SetAchievement("THIRD_PART");
         Steamworks.SteamUserStats.StoreStats();
     }
 
     public static void Set_LAST_PART()
     {
+        if (!SteamManager.Initialized)
+        {
+            return;
+        }
+
         Steamworks.SteamUserStats.SetAchievement("LAST_PART");
         Steamworks.SteamUserStats.StoreStats();
     }
 
     public static void Set_TWELVE_MINUTES()
     {
+        if (!SteamManager.Initialized)
+        {
+            return;
+        }
+
         Steamworks.SteamUserStats.SetAchievement("TWELVE_MINUTES");
         Steamworks.SteamUserStats.StoreStats();
     }
 
     public static void Set_TEN_MINUTES()
     {
+        if (!SteamManager.Initialized)
+        {
+            return;
+        }
+
         Steamworks.SteamUserStats.SetAchievement("TEN_MINUTES");
         Steamworks.SteamUserStats.StoreStats();
     }
 
     public static void Set_EIGHT_MINUTES()
     {
+        if (!SteamManager.Initialized)
+        {
+            return;
+        }
+
         Steamworks.SteamUserStats.SetAchievement("EIGHT_MINUTES");
         Steamworks.SteamUserStats.StoreStats();
     }
 
     private static void Set_PLAYTHROUGH()
     {
+        if (!SteamManager.Initialized)
+        {
+            return;
+        }
+
         Steamworks.SteamUserStats.SetAchievement("PLAYTHROUGH");
         Steamworks.SteamUserStats.StoreStats();
     }
 
     private static void Set_HEART()
     {
+        if (!SteamManager.Initialized)
+        {
+            return;
+        }
+
         Steamworks.SteamUserStats.SetAchievement("HEART");
         Steamworks.SteamUserStats.StoreStats();
     }
