@@ -6,7 +6,12 @@ using TMPro;
 
 public class SpeedrunTimer : MonoBehaviour
 {
-	[SerializeField] TextMeshProUGUI textmeshPro;
+	[SerializeField] 
+	TextMeshProUGUI textmeshPro;
+	[SerializeField]
+	TextMeshProUGUI[] statueFreezeFrames;
+	private int currentStatueTime = 0;
+
 	public static bool isASpeedrun = false;
 	private bool started = false;
 	private bool finished = false;
@@ -21,11 +26,28 @@ public class SpeedrunTimer : MonoBehaviour
         if (isASpeedrun)
 		{
 			textmeshPro.enabled = true;
+			for (int i = 0; i < statueFreezeFrames.Length; i++)
+            {
+				statueFreezeFrames[i].enabled = true;
+            }
+
+			TowerTrigger.PieceRemoved += SetStatueTime;
+			TowerTrigger.ResetCalled += ResetStatueTimes;
 		}
 		else
 		{
 			textmeshPro.enabled = false;
+			for (int i = 0; i < statueFreezeFrames.Length; i++)
+			{
+				statueFreezeFrames[i].enabled = false;
+			}
 		}
+	}
+
+    private void OnDestroy()
+    {
+		TowerTrigger.PieceRemoved -= SetStatueTime;
+		TowerTrigger.ResetCalled -= ResetStatueTimes;
 	}
 
     // Update is called once per frame
@@ -64,6 +86,46 @@ public class SpeedrunTimer : MonoBehaviour
 				StartCoroutine(UpdateLeaderboard(finalTime, "speedrunall"));
 			}
 			//UpdateLeaderboard(finalTime);
+		}
+	}
+
+	private void SetStatueTime()
+    {
+		if (!isASpeedrun)
+        {
+			return;
+        }
+
+		if (statueFreezeFrames.Length > currentStatueTime)
+        {
+			long elapsedTicks = DateTime.Now.Ticks - speedrunStart.Ticks;
+			TimeSpan elapsedSpan = new TimeSpan(elapsedTicks);
+			
+			string timeString = "";
+			if (elapsedSpan.Hours < 1)
+			{
+				timeString = ""
+				+ elapsedSpan.Minutes.ToString("D2") + ":"
+				+ elapsedSpan.Seconds.ToString("D2") + ":"
+				+ elapsedSpan.Milliseconds.ToString("D3");
+			}
+
+			statueFreezeFrames[currentStatueTime].SetText(timeString);
+			currentStatueTime++;
+		}
+	}
+
+	private void ResetStatueTimes()
+    {
+		currentStatueTime = 0;
+		if (!isASpeedrun)
+		{
+			return;
+		}
+
+		for (int i = 0; i < statueFreezeFrames.Length; i++)
+		{
+			statueFreezeFrames[i].SetText("");
 		}
 	}
 
@@ -149,15 +211,15 @@ public class SpeedrunTimer : MonoBehaviour
         if (finished && allStatues)
         {
             TimeSpan elapsedSpan = new TimeSpan(finishTime.Ticks - speedrunStart.Ticks);
-            if (elapsedSpan.Minutes <= 12)
+            if (elapsedSpan <= new TimeSpan(0, 12, 0))
             {
                 Achievement_Manager.Set_TWELVE_MINUTES();
             }
-            if (elapsedSpan.Minutes <= 10)
+            if (elapsedSpan <= new TimeSpan(0, 10, 0))
             {
                 Achievement_Manager.Set_TEN_MINUTES();
             }
-            if (elapsedSpan.Minutes <= 8)
+            if (elapsedSpan <= new TimeSpan(0, 8, 0))
             {
                 Achievement_Manager.Set_EIGHT_MINUTES();
             }

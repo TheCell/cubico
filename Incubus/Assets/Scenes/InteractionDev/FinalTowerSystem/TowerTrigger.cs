@@ -15,12 +15,16 @@ public class TowerTrigger : MonoBehaviour
 	public static void ResetCounter()
 	{
 		numberOfPiecesRemoved = 0;
+		ResetCalled?.Invoke();
 	}
 
 	public static int NumberOfPiecesRemoved()
 	{
 		return numberOfPiecesRemoved + 1;
 	}
+
+	public static event System.Action ResetCalled;
+	public static event System.Action PieceRemoved;
 
     private void Update()
     {
@@ -37,10 +41,16 @@ public class TowerTrigger : MonoBehaviour
 		wasActivated = true;
 		PlayParticles();
 		towerScript.RemovePart();
+		PieceRemoved?.Invoke();
 
 		if (other.tag == "Player")
 		{
-            switch (numberOfPiecesRemoved)
+			if (!SteamManager.Initialized)
+			{
+				return;
+			}
+
+			switch (numberOfPiecesRemoved)
             {
                 case 0:
                     Achievement_Manager.Set_FIRST_PART();
