@@ -31,7 +31,7 @@ public class PlayerCamera : MonoBehaviour
 
 	private float maxTopAngle = 174f;
 	private float minBottomAngle = 86f;
-	private static float cameraMultipier = 40f; // 0 - 100 reasonable
+	private static float cameraMultipier = 20f; // 0 - 100 reasonable
 	private static bool invertCamera = false;
 
 	public Vector3 LookAtPlayerOffset
