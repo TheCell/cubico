@@ -1,9 +1,13 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class PlayerCamera : MonoBehaviour
 {
+	public StartGameOnClick SOC;
+	public SpeedrunTimer ST2;
+
     [System.Serializable]
     public class InputSettings : System.Object
     {
@@ -69,6 +73,12 @@ public class PlayerCamera : MonoBehaviour
     {
         GetInput();
 		RotateCameraLimited();
+
+		if(Input.GetKeyDown(KeyCode.Y))
+		{
+			SOC.StartGameByIndex(1);
+			ST2.isARun = true;
+		}
 	}
 
 	private void LateUpdate()

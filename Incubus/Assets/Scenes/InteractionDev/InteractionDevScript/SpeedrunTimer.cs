@@ -8,12 +8,18 @@ public class SpeedrunTimer : MonoBehaviour
 {
 	[SerializeField] TextMeshProUGUI textmeshPro;
 	public static bool isASpeedrun = false;
+	public bool isARun;
 	private bool started = false;
 	private bool finished = false;
 	private DateTime speedrunStart = DateTime.Now;
 	private DateTime finishTime = DateTime.Now;
 	private bool leaderboardUpdated = false;
 	private bool allStatues = false;
+	public string timeString;
+
+	public string smallTimer;
+	public string ST2;
+	public TextMeshProUGUI smallTimerTimer;
 
     // Start is called before the first frame update
     void Start()
@@ -31,6 +37,8 @@ public class SpeedrunTimer : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+		isARun = isASpeedrun;
+
 		if (!isASpeedrun)
 		{
 			return;
@@ -46,8 +54,9 @@ public class SpeedrunTimer : MonoBehaviour
 		}
 
 		UpdateUI();
-
         UpdateAchievement();
+
+		smallTimerTimer.text = smallTimer;
 		
 		if (finished && !leaderboardUpdated)
 		{
@@ -67,6 +76,49 @@ public class SpeedrunTimer : MonoBehaviour
 		}
 	}
 
+<<<<<<< Updated upstream
+=======
+	private void SetStatueTime()
+    {
+		if (!isASpeedrun)
+        {
+			return;
+        }
+
+		if (statueFreezeFrames.Length > currentStatueTime)
+        {
+			long elapsedTicks = DateTime.Now.Ticks - speedrunStart.Ticks;
+			TimeSpan elapsedSpan = new TimeSpan(elapsedTicks);
+			
+			timeString = "";
+			if (elapsedSpan.Hours < 1)
+			{
+				timeString = ""
+				+ elapsedSpan.Minutes.ToString("D2") + ":"
+				+ elapsedSpan.Seconds.ToString("D2") + ":"
+				+ elapsedSpan.Milliseconds.ToString("D3");
+			}
+
+			statueFreezeFrames[currentStatueTime].SetText(timeString);
+			currentStatueTime++;
+		}
+	}
+
+	private void ResetStatueTimes()
+    {
+		currentStatueTime = 0;
+		if (!isASpeedrun)
+		{
+			return;
+		}
+
+		for (int i = 0; i < statueFreezeFrames.Length; i++)
+		{
+			statueFreezeFrames[i].SetText("");
+		}
+	}
+
+>>>>>>> Stashed changes
 	private void StartSpeedrun()
 	{
 		if (!started)
@@ -106,10 +158,12 @@ public class SpeedrunTimer : MonoBehaviour
 
 		if (allStatues)
 		{
+			smallTimer = timeString;
 			timeString = "all statues " + timeString;
 		}
 		else
 		{
+			smallTimer = timeString;
 			timeString = "any% " + timeString;
 		}
 

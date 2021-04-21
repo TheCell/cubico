@@ -16,6 +16,8 @@ public class GameEndTrigger : MonoBehaviour
 	[SerializeField] private AudioSource musicSource;
 	private VideoPlayer videoPlayer;
 
+	public bool hasFinishedRun;
+
 	private void Start()
 	{
 		displayPlane.GetComponent<MeshRenderer>().enabled = false;
@@ -32,6 +34,7 @@ public class GameEndTrigger : MonoBehaviour
 
 	private void OnTriggerEnter(Collider other)
 	{
+		hasFinishedRun = true;
 		if (other.GetComponent<PlayerController>() != null)
 		{
 			BlockPlayerMovement();
