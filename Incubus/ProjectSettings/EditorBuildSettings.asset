@@ -74,4 +74,7 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Community-Content/Scenes/Getting-Started/Getting-Started-Additional.unity
     guid: e2a1d7446ce21a8439cb7e97f21145c8
+  - enabled: 1
+    path: Assets/Community-Content/Scenes/Example Scenes/ExampleSpeedrun.unity
+    guid: eddf614701afba144abd351a2526be2d
   m_configObjects: {}
