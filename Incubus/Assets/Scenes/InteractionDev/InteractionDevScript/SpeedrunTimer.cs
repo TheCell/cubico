@@ -3,6 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using TMPro;
+using UnityEngine.SceneManagement;
 
 public class SpeedrunTimer : MonoBehaviour
 {
@@ -69,8 +70,15 @@ public class SpeedrunTimer : MonoBehaviour
 
 		UpdateUI();
 
-        UpdateAchievement();
-		
+		if (IsOfficialMap())
+        {
+			UpdateAchievement();
+		}
+		else
+        {
+			leaderboardUpdated = true;
+		}
+
 		if (finished && !leaderboardUpdated)
 		{
 			leaderboardUpdated = true;
@@ -300,5 +308,11 @@ public class SpeedrunTimer : MonoBehaviour
 		{
 			Debug.Log(String.Format("A previous score was better. Global rank #{0}.", leaderboardScore.m_nGlobalRankNew));
 		}
+	}
+
+	private bool IsOfficialMap()
+    {
+		var activeScene = SceneManager.GetActiveScene();
+		return activeScene.buildIndex == 1;
 	}
 }

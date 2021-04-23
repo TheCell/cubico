@@ -18,11 +18,17 @@ public class GameEndTrigger : MonoBehaviour
 
 	private void Start()
 	{
-		displayPlane.GetComponent<MeshRenderer>().enabled = false;
-		videoPlayer = displayPlane.GetComponent<VideoPlayer>();
-		videoPlayer.playOnAwake = false;
-		videoPlayer.aspectRatio = VideoAspectRatio.FitInside;
-		videoPlayer.loopPointReached += Quit;
+		if (displayPlane)
+        {
+			displayPlane.GetComponent<MeshRenderer>().enabled = false;
+		}
+		if (videoPlayer)
+        {
+			videoPlayer = displayPlane.GetComponent<VideoPlayer>();
+			videoPlayer.playOnAwake = false;
+			videoPlayer.aspectRatio = VideoAspectRatio.FitInside;
+			videoPlayer.loopPointReached += Quit;
+		}
 	}
 
 	public void prepareVideo()
@@ -35,36 +41,67 @@ public class GameEndTrigger : MonoBehaviour
 		if (other.GetComponent<PlayerController>() != null)
 		{
 			BlockPlayerMovement();
-			videoPlayer.SetDirectAudioVolume(0, AudioListener.volume);
+			if (videoPlayer)
+            {
+				videoPlayer.SetDirectAudioVolume(0, AudioListener.volume);
+			}
 			PlayClosingVideo();
 		}
 	}
 
 	private void BlockPlayerMovement()
 	{
-		playerController.SetInputActive(false);
-		playerCamera.SetInputActive(false);
+		if (playerController)
+        {
+			playerController.SetInputActive(false);
+		}
+		if (playerCamera)
+        {
+			playerCamera.SetInputActive(false);
+		}
 	}
 
 	private void PlayClosingVideo()
 	{
         DisablePostProcessing();
-		displayPlane.GetComponent<MeshRenderer>().enabled = true;
-		videoPlayer.Play();
-		musicSource.Stop();
+		if (displayPlane)
+        {
+			displayPlane.GetComponent<MeshRenderer>().enabled = true;
+			videoPlayer.Play();
+			musicSource.Stop();
+		}
+		else
+        {
+			StartCoroutine(DelayedQuit(3));
+        }
 	}
 
 	private void DisablePostProcessing()
 	{
-		playerCamera.GetComponent<PostProcessLayer>().enabled = false;
+		if (playerCamera)
+        {
+			playerCamera.GetComponent<PostProcessLayer>().enabled = false;
+		}
 	}
 
 	private void Quit(VideoPlayer vp)
 	{
-        videoPlayer.Stop();
-        displayPlane.GetComponent<MeshRenderer>().enabled = false;
+		videoPlayer.Stop();
+		displayPlane.GetComponent<MeshRenderer>().enabled = false;
 		playerCamera.GetComponent<PostProcessLayer>().enabled = true;
-		SceneManager.LoadScene(1, LoadSceneMode.Single);
-        return;
+		Quit();
 	}
+
+	private void Quit()
+	{
+		Cursor.lockState = CursorLockMode.Confined;
+		Cursor.visible = true;
+		SceneManager.LoadScene(0, LoadSceneMode.Single);
+	}
+
+	IEnumerator DelayedQuit(float seconds)
+    {
+		yield return new WaitForSeconds(seconds);
+		Quit();
+    }
 }
