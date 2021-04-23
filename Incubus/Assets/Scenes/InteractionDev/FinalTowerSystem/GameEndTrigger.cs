@@ -22,9 +22,10 @@ public class GameEndTrigger : MonoBehaviour
         {
 			displayPlane.GetComponent<MeshRenderer>().enabled = false;
 		}
+		
+		videoPlayer = displayPlane.GetComponent<VideoPlayer>();
 		if (videoPlayer)
-        {
-			videoPlayer = displayPlane.GetComponent<VideoPlayer>();
+		{
 			videoPlayer.playOnAwake = false;
 			videoPlayer.aspectRatio = VideoAspectRatio.FitInside;
 			videoPlayer.loopPointReached += Quit;
