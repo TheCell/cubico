@@ -11,8 +11,16 @@ public class TowerTrigger : MonoBehaviour
 	private static int numberOfPiecesRemoved = 0;
     private int materialsUpdated = 0;
 	private bool wasActivated;
-    
-	public static void ResetCounter()
+
+    public void Start()
+    {
+		if (!SteamManager.Initialized)
+        {
+			Debug.LogError("SteamManager not automatically initialized");
+        }
+	}
+
+    public static void ResetCounter()
 	{
 		numberOfPiecesRemoved = 0;
 		ResetCalled?.Invoke();
