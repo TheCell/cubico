@@ -365,7 +365,7 @@ PrefabInstance:
     - target: {fileID: 1478793686897217152, guid: df12bda2c9e1bb243b0b6412dafba020,
         type: 3}
       propertyPath: m_AnchorMax.y
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 2260717940897629723, guid: df12bda2c9e1bb243b0b6412dafba020,
         type: 3}
@@ -490,7 +490,7 @@ PrefabInstance:
     - target: {fileID: 7190504671976125253, guid: df12bda2c9e1bb243b0b6412dafba020,
         type: 3}
       propertyPath: m_AnchorMax.y
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 8278818807333202026, guid: df12bda2c9e1bb243b0b6412dafba020,
         type: 3}
@@ -520,7 +520,7 @@ PrefabInstance:
     - target: {fileID: 8278818807428778573, guid: df12bda2c9e1bb243b0b6412dafba020,
         type: 3}
       propertyPath: m_textAlignment
-      value: 514
+      value: 65535
       objectReference: {fileID: 0}
     - target: {fileID: 8278818807428778573, guid: df12bda2c9e1bb243b0b6412dafba020,
         type: 3}
@@ -580,7 +580,7 @@ PrefabInstance:
     - target: {fileID: 8278818807800751002, guid: df12bda2c9e1bb243b0b6412dafba020,
         type: 3}
       propertyPath: m_AnchorMax.y
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 8278818807990457062, guid: df12bda2c9e1bb243b0b6412dafba020,
         type: 3}
@@ -615,7 +615,7 @@ PrefabInstance:
     - target: {fileID: 8278818808438164583, guid: df12bda2c9e1bb243b0b6412dafba020,
         type: 3}
       propertyPath: m_AnchorMax.y
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 8278818808658754746, guid: df12bda2c9e1bb243b0b6412dafba020,
         type: 3}
@@ -705,7 +705,7 @@ PrefabInstance:
     - target: {fileID: 8278818808959805928, guid: df12bda2c9e1bb243b0b6412dafba020,
         type: 3}
       propertyPath: m_IsActive
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 8464947426653448096, guid: df12bda2c9e1bb243b0b6412dafba020,
         type: 3}
