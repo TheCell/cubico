@@ -14,6 +14,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 1420626486941323003, guid: c37f504b1dbaa03479fef21367c95411,
         type: 3}
+      propertyPath: m_RootOrder
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1420626486941323003, guid: c37f504b1dbaa03479fef21367c95411,
+        type: 3}
       propertyPath: m_LocalPosition.x
       value: 0
       objectReference: {fileID: 0}
@@ -29,6 +34,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 1420626486941323003, guid: c37f504b1dbaa03479fef21367c95411,
         type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 1420626486941323003, guid: c37f504b1dbaa03479fef21367c95411,
+        type: 3}
       propertyPath: m_LocalRotation.x
       value: 0
       objectReference: {fileID: 0}
@@ -40,16 +50,6 @@ PrefabInstance:
     - target: {fileID: 1420626486941323003, guid: c37f504b1dbaa03479fef21367c95411,
         type: 3}
       propertyPath: m_LocalRotation.z
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 1420626486941323003, guid: c37f504b1dbaa03479fef21367c95411,
-        type: 3}
-      propertyPath: m_LocalRotation.w
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 1420626486941323003, guid: c37f504b1dbaa03479fef21367c95411,
-        type: 3}
-      propertyPath: m_RootOrder
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 1420626486941323003, guid: c37f504b1dbaa03479fef21367c95411,
@@ -71,6 +71,16 @@ PrefabInstance:
         type: 3}
       propertyPath: loadWorldDecoration
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4651560787639540616, guid: c37f504b1dbaa03479fef21367c95411,
+        type: 3}
+      propertyPath: m_Enabled
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 4651560787639540658, guid: c37f504b1dbaa03479fef21367c95411,
+        type: 3}
+      propertyPath: m_audioClip
+      value: 
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: c37f504b1dbaa03479fef21367c95411, type: 3}
