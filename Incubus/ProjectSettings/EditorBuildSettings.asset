@@ -77,4 +77,7 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Community-Content/Scenes/Example Scenes/ExampleSpeedrun.unity
     guid: eddf614701afba144abd351a2526be2d
+  - enabled: 1
+    path: Assets/Community-Content/Scenes/Example Scenes/MichaelOpenWorldSpeedrun.unity
+    guid: bd345e46288f0ad4486ef7d3a072e3ee
   m_configObjects: {}
