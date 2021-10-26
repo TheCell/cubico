@@ -1,4 +1,4 @@
-﻿using System.Collections;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
@@ -10,6 +10,7 @@ public class SetAndUpdateOptions : MonoBehaviour
 	public Toggle invertCamera;
 	public Toggle preloadLevel;
 	public Button backButton;
+	public SaveLoadManager SLM;
 
 	public void SetCameraInvertBool(bool value)
 	{
@@ -31,19 +32,18 @@ public class SetAndUpdateOptions : MonoBehaviour
 		AdditionalSceneLoader.PreloadLevel = value;
 	}
 
-	private void Start()
-	{
-		cameraSpeedSlider.value = PlayerCamera.CameraMultipier;
-		invertCamera.isOn = PlayerCamera.InvertCamera;
-		audioLevel.value = AudioListener.volume;
-		preloadLevel.isOn = AdditionalSceneLoader.PreloadLevel;
-	}
-
     private void Update()
     {
+        PlayerPrefs.SetInt("CameraInvert", invertCamera.isOn?1:0);
+		PlayerPrefs.SetFloat("CameraSpeed", cameraSpeedSlider.value);
+		PlayerPrefs.SetFloat("AudioVolume", AudioListener.volume);
+		PlayerPrefs.SetInt("PreloadLevel", preloadLevel.isOn?1:0);
+		PlayerPrefs.Save();
+		SLM.Save();
         if (gameObject.activeSelf && Input.GetButtonDown("Cancel"))
         {
             backButton.onClick.Invoke();
         }
+		
     }
 }
