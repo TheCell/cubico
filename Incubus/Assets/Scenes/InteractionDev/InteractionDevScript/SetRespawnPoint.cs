@@ -13,11 +13,16 @@ public class SetRespawnPoint : MonoBehaviour
 	private TurnObject turnScript;
 	private Material standardMaterial;
 	private float standardTurnSpeed;
+	public GameObject SDobj;
+	public StatsDisplay SD;
 
 	AudioSource soundEffectWhenSet;
 
 	private void Start()
 	{
+		SDobj = GameObject.Find("Stats");
+		SD = SDobj.GetComponent<StatsDisplay>();
+		SD.CheckpointsReached = 0;
 		if (icoSphere == null)
 		{
 			Debug.LogError("icoSphere not set");
@@ -49,6 +54,8 @@ public class SetRespawnPoint : MonoBehaviour
 		}
 		turnScript.turnSpeed = 100f;
 		icoSphere.GetComponent<MeshRenderer>().material = activeMaterial;
+		SDobj = GameObject.Find("Stats");
+		SD = SDobj.GetComponent<StatsDisplay>();
 	}
 
 	private void OnTriggerEnter(Collider collider)
@@ -59,19 +66,18 @@ public class SetRespawnPoint : MonoBehaviour
 			return;
 		}
 
-		if (!isActive)
-		{
-			soundEffectWhenSet.Play();
-		}
-
 		respawnInfo.RespawnPosition = spawnPoint.position;
 		respawnInfo.RespawnEffect = respawnEffect;
 		if (respawnInfo.currentRespawn != null)
 		{
 			respawnInfo.currentRespawn.isActive = false;
 		}
-
-		isActive = true;
 		respawnInfo.currentRespawn = this;
+		if (!isActive)
+		{
+			soundEffectWhenSet.Play();
+			SD.CheckpointsReached += 1;
+		}
+		isActive = true;
 	}
 }

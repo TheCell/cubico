@@ -46,7 +46,7 @@ public class PlayerController : MonoBehaviour
 
 	private Vector3 velocity = Vector3.zero;
 	private Quaternion targetRotation;
-	private Rigidbody rigidb;
+	public Rigidbody rigidb;
 	private SphereCollider sphereCollider;
 	private float forwardInput, sidewardInput, jumpInput;
 	private Vector3 impactToAdd = Vector3.zero;
@@ -54,6 +54,7 @@ public class PlayerController : MonoBehaviour
 	private float lastGroundedTime;
 	private RaycastHit groundHit;
 	private Vector3 groundAngle;
+	public bool isGrounded;
 
 	private bool justJumped = false;
 	private bool sprintInput = false;
@@ -157,7 +158,7 @@ public class PlayerController : MonoBehaviour
 
 	public bool IsGrounded()
 	{
-		bool isGrounded = IsGroundedWithoutCoyoteTime();
+		isGrounded = IsGroundedWithoutCoyoteTime();
 		if (isGrounded)
 		{
 			lastGroundedTime = Time.timeSinceLevelLoad;
@@ -172,7 +173,7 @@ public class PlayerController : MonoBehaviour
 		return isGrounded;
 	}
 
-	private bool IsGroundedWithoutCoyoteTime()
+	public bool IsGroundedWithoutCoyoteTime()
 	{
 		Vector3 downwardOffset = new Vector3(0f, -0.20f, 0f);
 		return Physics.CheckSphere(visualContainer.transform.position + downwardOffset, sphereCollider.radius - 0.15f, moveSettings.ground, QueryTriggerInteraction.Ignore);
