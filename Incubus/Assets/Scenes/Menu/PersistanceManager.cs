@@ -15,7 +15,6 @@ public static class PersistanceManager
         sw.Close();
 
         File.WriteAllText(fullPath, cubicoSaveFile);
-        Debug.Log($"saved {fullPath}");
     }
 
     public static SaveFile LoadFile(string fileName)
@@ -25,7 +24,6 @@ public static class PersistanceManager
         if (File.Exists(fullPath))
         {
             var json = File.ReadAllText(fullPath);
-            Debug.Log($"loaded {fullPath}");
             return JsonUtility.FromJson<SaveFile>(json);
         }
 
