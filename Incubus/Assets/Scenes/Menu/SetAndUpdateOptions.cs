@@ -46,4 +46,22 @@ public class SetAndUpdateOptions : MonoBehaviour
             backButton.onClick.Invoke();
         }
     }
+
+    private void OnDisable()
+    {
+		SaveNewValues();
+    }
+
+    private void SaveNewValues()
+    {
+		var saveFile = new SaveFile
+		{
+			cameraMultipier = PlayerCamera.CameraMultipier,
+			invertCamera = PlayerCamera.InvertCamera,
+			preloadLevel = AdditionalSceneLoader.PreloadLevel,
+			soundVolume = AudioListener.volume
+		};
+
+		PersistanceManager.SaveFile("playerSettings.json", saveFile);
+	}
 }
